@@ -1,0 +1,13 @@
+.weather {
+    border: 2px solid #000000;
+    width: 360px;
+    border-radius: 8%;
+    margin: 15px;
+    display: inline-block;
+}
+
+img {
+    width: 340px;
+    margin-top: 10px;
+    border-radius: 10%;
+}
