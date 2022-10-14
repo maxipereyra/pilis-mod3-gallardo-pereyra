@@ -15,18 +15,31 @@ const WeatherCreation = () => {
     const onSubmit = ( data ) => {
         const ciudad = data.ciudad;
         const url = data.url;
-        getWeather(data.longitud, data.latitud)
+        getWeather(data.latitud, data.longitud)
             .then( (data) => {
+                const aux = JSON.parse(localStorage.getItem("datos"));//Asigno a la varable aux los datos del localStorage
+                const weathers = [];
                 const weather = { 
                     id: datos.length+1,
                     ciudad: ciudad,
-                    longitude: data.longitude,
                     latitude: data.latitude,
+                    longitude: data.longitude,
                     temperature: data.current_weather.temperature,
                     windspeed: data.current_weather.windspeed,
                     url: url
                 }
                 setDatos([...datos, weather]);
+
+                if(aux === null) { //Si el valor de la variable aux es null guarda los datos del clima en un array y los mando al localStorage
+                    weathers.push(weather);
+                    console.log(weathers);
+                    localStorage.setItem("datos", JSON.stringify(weathers));
+                } else { //Si la variable datos existe en el localStorage le agregaos los nuevos datos del clima
+                    aux.push(weather);
+                    console.log(aux);
+                    localStorage.setItem("datos", JSON.stringify(aux));
+                }    
+
             })
             
         navigate('/')
@@ -43,36 +56,36 @@ const WeatherCreation = () => {
                         required: 'Debe ingresar el nombre de ciudad'
                     })}
                 />
-                <p> { errors.ciudad } </p>
+                <p> { errors.ciudad?.message } </p>
                 <input
                     className='input-form'
-                    type="" 
-                    placeholder='Ingrese longitud'
-                    { ...register('longitud', {
-                        required : 'Debe ingresar la longitud'
-                    })} 
-                    name="longitud"
-                />
-                <p> { errors.longitud } </p>
-                <input 
-                    className='input-form'
-                    placeholder='Ingrese latitud' 
+                    type="number" 
+                    placeholder='Ingrese latitud'
                     name="latitud"
+                    step='0.1'
                     { ...register('latitud', {
-                        required: 'Debe ingresar la latitud'
+                        required : 'Debe ingresar la latitud'
+                    })} 
+                />
+                <p> { errors.latitud?.message } </p>
+                <input 
+                    type='number'
+                    className='input-form'
+                    placeholder='Ingrese longitud' 
+                    name="longitud"
+                    step='0.1'
+                    { ...register('longitud', {
+                        required: 'Debe ingresar la longitud'
                     })}
                 />
-                <p> { errors.latitud} </p>
+                <p> { errors.longitud?.message } </p>
                 <input 
+                    type='text'
                     className='input-form'
                     placeholder='ingrese URL de imagen'
                     name='url'
-                    { ...register('url', {
-                        required: 'Debe ingresar una url de una imagen'
-                    })}
+                    { ...register('url')}
                 />
-
-                <p> { errors.url } </p>
                     <button className='btn-form' type='submit'>Enviar</button>
 
             </form>
