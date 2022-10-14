@@ -5,16 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { UserProvider } from './context/UserContext';
-import { FormProvider } from './context/FormContext';
+import { WeatherCardsContextProvider } from './context/WeatherCardsContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
-        <FormProvider>
+        <WeatherCardsContextProvider>
           <App />
-        </FormProvider>
+        </WeatherCardsContextProvider>
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>

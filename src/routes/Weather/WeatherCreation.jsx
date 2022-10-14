@@ -2,13 +2,15 @@ import { useContext } from 'react';
 import { getWeather } from '../../services/service';
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom';
-import { FormContext } from '../../context/FormContext'
+import { WeatherCardsContext } from '../../context/WeatherCardsContext'
 
 const WeatherCreation = () => {
 
-    const { datos, setDatos } = useContext(FormContext);
+    const { datos, setDatos } = useContext(WeatherCardsContext);
     const { register, handleSubmit, formState: { errors} } = useForm();
     const navigate = useNavigate();
+
+    console.log(localStorage.getItem('datos'))
 
     const onSubmit = ( data ) => {
         const ciudad = data.ciudad;
@@ -25,15 +27,16 @@ const WeatherCreation = () => {
                     url: url
                 }
                 setDatos([...datos, weather]);
-                console.log(weather);
             })
+            
         navigate('/')
     }
     
     return(
-        <>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <input 
+        <div className='sign-in-container'>
+            <form className='sign-in-form' onSubmit={handleSubmit(onSubmit)}>
+                <input
+                    className='input-form'
                     type="text" 
                     placeholder='Ingrese nombre de ciudad'
                     {...register('ciudad', {
@@ -41,7 +44,8 @@ const WeatherCreation = () => {
                     })}
                 />
                 <p> { errors.ciudad } </p>
-                <input 
+                <input
+                    className='input-form'
                     type="" 
                     placeholder='Ingrese longitud'
                     { ...register('longitud', {
@@ -51,6 +55,7 @@ const WeatherCreation = () => {
                 />
                 <p> { errors.longitud } </p>
                 <input 
+                    className='input-form'
                     placeholder='Ingrese latitud' 
                     name="latitud"
                     { ...register('latitud', {
@@ -59,6 +64,7 @@ const WeatherCreation = () => {
                 />
                 <p> { errors.latitud} </p>
                 <input 
+                    className='input-form'
                     placeholder='ingrese URL de imagen'
                     name='url'
                     { ...register('url', {
@@ -67,11 +73,10 @@ const WeatherCreation = () => {
                 />
 
                 <p> { errors.url } </p>
-                    <button type='submit'>Enviar</button>
+                    <button className='btn-form' type='submit'>Enviar</button>
 
             </form>
-            
-        </>
+        </div>
     )
 }
 
