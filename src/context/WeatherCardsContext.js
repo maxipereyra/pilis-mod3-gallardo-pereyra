@@ -4,8 +4,8 @@ export const WeatherCardsContext = createContext({
     datos: [{
         id:'',
         ciudad: '',
+        latitud: '',
         longitude: '',
-        latitude: '',
         temperature: '',
         windspeed: '',
         url: ''

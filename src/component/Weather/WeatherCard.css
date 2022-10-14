@@ -1,6 +1,7 @@
 .weather {
     border: 2px solid #000000;
     width: 360px;
+    height: 550px;
     border-radius: 8%;
     margin: 15px;
     display: inline-block;

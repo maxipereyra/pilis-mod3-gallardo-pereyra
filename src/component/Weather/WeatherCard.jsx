@@ -8,9 +8,9 @@ const WeatherCard = ({ dato }) => {
   const { datos, setDatos } = useContext(WeatherCardsContext);
 
   const handleDelete = () => {
-    setDatos(
-      datos.filter((del) => del.id !== dato.id)
-    )
+    const filter = datos.filter((del) => del.id !== dato.id);
+    setDatos(filter)
+    localStorage.setItem("datos", JSON.stringify(filter));
  }
 
   return (
@@ -19,12 +19,12 @@ const WeatherCard = ({ dato }) => {
         <div className="delete" onClick={handleDelete}>
           <BsFillXOctagonFill />
         </div>
-        <img src={url} />
+        <img src={url} alt="No hay imagen para mostrar" />
         <h1> {ciudad} </h1>
-        <h3>Longitud: {longitude} Latidtud: {latitude}
+        <h3>Latidtud: {latitude} - Longitud: {longitude} 
         </h3>
         <h1> Temperatura: {temperature} </h1>
-        <h1> Vel. viento: {windspeed} </h1>
+        <h1> Vel. viento: {windspeed}Km/h </h1>
       </div>
     
   );
