@@ -1,6 +1,6 @@
 import { createContext, useState  } from "react";
 
-export const FormContext = createContext({
+export const WeatherCardsContext = createContext({
     datos: [{
         id:'',
         ciudad: '',
@@ -13,9 +13,9 @@ export const FormContext = createContext({
     setDatos: () => {}
 })
 
-export const FormProvider = ({ children }) => {
+export const WeatherCardsContextProvider = ({ children }) => {
     const [ datos, setDatos ] = useState([]);
     const value = { datos, setDatos };
 
-    return <FormContext.Provider value={value}>{children}</FormContext.Provider>;
+    return <WeatherCardsContext.Provider value={value}>{children}</WeatherCardsContext.Provider>;
 }
