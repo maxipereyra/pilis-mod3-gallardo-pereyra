@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
-import palettoLogo from '../../assets/logo-clima.png';
+import climaLogo from '../../assets/logo-clima.png';
 import './Navigation.css';
 
 const Navigation = () => {
@@ -26,11 +26,11 @@ const Navigation = () => {
     <>
       <div className='navigation'>
         <Link className='logo-container' to='/'>
-          <img src={palettoLogo} alt='Logo' className='logo' />
+          <img src={climaLogo} alt='Logo' className='logo' />
         </Link>
         <div className='nav-links-container'>
           {currentUser ? (
-            <Link className='nav-link' to='/formulario'>
+            <Link className='nav-link sign-in' to='/formulario'>
               Nueva Tarjeta
             </Link>
           ) : (
@@ -38,7 +38,7 @@ const Navigation = () => {
           )}
 
           {currentUser ? (
-            <span className='nav-link' onClick={handleSignOut}>
+            <span className='nav-link sign-out' onClick={handleSignOut}>
               Cerrar Sesión
             </span>
           ) : (

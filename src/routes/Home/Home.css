@@ -5,6 +5,7 @@ header {
   .main-container {
     display: flex;
     flex-direction: row;
+    background-color: #cbf3f0; 
   }
   
   header {
