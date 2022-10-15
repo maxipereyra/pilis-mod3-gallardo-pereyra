@@ -4,7 +4,7 @@ import Home from './routes/Home/Home';
 import Navigation from './routes/Navigation/Navigation';
 import Login from './routes/Login/Login';
 import WeatherCreation from './routes/Weather/WeatherCreation'
-
+import Page404  from './routes/404/404Page';
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
            <Route index element={<Home/>}/>
            <Route path='login' element={<Login/>}/>
            <Route path='/formulario' element={<WeatherCreation/>}/>
+           <Route path='*' element={<Page404/>} />
         </Route>
         
 
